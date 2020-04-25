@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hust.se.app.walk.dao.TWalkUserinfoDao">
+
+    <resultMap type="edu.hust.se.app.walk.entity.TWalkUserinfo" id="TWalkUserinfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="openid" column="openid" jdbcType="VARCHAR"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        <result property="avatarurl" column="avatarUrl" jdbcType="VARCHAR"/>
+        <result property="avatarlocal" column="avatarLocal" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="INTEGER"/>
+        <result property="todaysteps" column="todaysteps" jdbcType="INTEGER"/>
+        <result property="steps" column="steps" jdbcType="INTEGER"/>
+        <result property="keepcount" column="keepcount" jdbcType="INTEGER"/>
+        <result property="premonthkeepcount" column="preMonthKeepCount" jdbcType="INTEGER"/>
+        <result property="monthkeepcount" column="monthKeepCount" jdbcType="INTEGER"/>
+        <result property="kms" column="kms" jdbcType="NUMERIC"/>
+        <result property="caloris" column="caloris" jdbcType="NUMERIC"/>
+        <result property="myreward" column="myreward" jdbcType="INTEGER"/>
+        <result property="mypoint" column="mypoint" jdbcType="INTEGER"/>
+        <result property="lastday" column="lastday" jdbcType="VARCHAR"/>
+        <result property="premonthsteps" column="preMonthSteps" jdbcType="INTEGER"/>
+        <result property="monthsteps" column="monthsteps" jdbcType="INTEGER"/>
+        <result property="resigncount" column="resigncount" jdbcType="INTEGER"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="usertype" column="usertype" jdbcType="INTEGER"/>
+        <result property="wxid" column="wxid" jdbcType="VARCHAR"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TWalkUserinfoMap">
+        select
+          id, openid, nickname, avatarUrl, avatarLocal, weight, height, todaysteps, steps, keepcount, preMonthKeepCount, monthKeepCount, kms, caloris, myreward, mypoint, lastday, preMonthSteps, monthsteps, resigncount, gender, usertype, wxid, country, province, city, address
+        from test.t_walk_userinfo
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TWalkUserinfoMap">
+        select
+          id, openid, nickname, avatarUrl, avatarLocal, weight, height, todaysteps, steps, keepcount, preMonthKeepCount, monthKeepCount, kms, caloris, myreward, mypoint, lastday, preMonthSteps, monthsteps, resigncount, gender, usertype, wxid, country, province, city, address
+        from test.t_walk_userinfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TWalkUserinfoMap">
+        select
+          id, openid, nickname, avatarUrl, avatarLocal, weight, height, todaysteps, steps, keepcount, preMonthKeepCount, monthKeepCount, kms, caloris, myreward, mypoint, lastday, preMonthSteps, monthsteps, resigncount, gender, usertype, wxid, country, province, city, address
+        from test.t_walk_userinfo
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="openid != null and openid != ''">
+                and openid = #{openid}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                and nickname = #{nickname}
+            </if>
+            <if test="avatarurl != null and avatarurl != ''">
+                and avatarUrl = #{avatarurl}
+            </if>
+            <if test="avatarlocal != null and avatarlocal != ''">
+                and avatarLocal = #{avatarlocal}
+            </if>
+            <if test="weight != null">
+                and weight = #{weight}
+            </if>
+            <if test="height != null">
+                and height = #{height}
+            </if>
+            <if test="todaysteps != null">
+                and todaysteps = #{todaysteps}
+            </if>
+            <if test="steps != null">
+                and steps = #{steps}
+            </if>
+            <if test="keepcount != null">
+                and keepcount = #{keepcount}
+            </if>
+            <if test="premonthkeepcount != null">
+                and preMonthKeepCount = #{premonthkeepcount}
+            </if>
+            <if test="monthkeepcount != null">
+                and monthKeepCount = #{monthkeepcount}
+            </if>
+            <if test="kms != null">
+                and kms = #{kms}
+            </if>
+            <if test="caloris != null">
+                and caloris = #{caloris}
+            </if>
+            <if test="myreward != null">
+                and myreward = #{myreward}
+            </if>
+            <if test="mypoint != null">
+                and mypoint = #{mypoint}
+            </if>
+            <if test="lastday != null and lastday != ''">
+                and lastday = #{lastday}
+            </if>
+            <if test="premonthsteps != null">
+                and preMonthSteps = #{premonthsteps}
+            </if>
+            <if test="monthsteps != null">
+                and monthsteps = #{monthsteps}
+            </if>
+            <if test="resigncount != null">
+                and resigncount = #{resigncount}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="usertype != null">
+                and usertype = #{usertype}
+            </if>
+            <if test="wxid != null and wxid != ''">
+                and wxid = #{wxid}
+            </if>
+            <if test="country != null and country != ''">
+                and country = #{country}
+            </if>
+            <if test="province != null and province != ''">
+                and province = #{province}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into test.t_walk_userinfo(openid, nickname, avatarUrl, avatarLocal, weight, height, todaysteps, steps, keepcount, preMonthKeepCount, monthKeepCount, kms, caloris, myreward, mypoint, lastday, preMonthSteps, monthsteps, resigncount, gender, usertype, wxid, country, province, city, address)
+        values (#{openid}, #{nickname}, #{avatarurl}, #{avatarlocal}, #{weight}, #{height}, #{todaysteps}, #{steps}, #{keepcount}, #{premonthkeepcount}, #{monthkeepcount}, #{kms}, #{caloris}, #{myreward}, #{mypoint}, #{lastday}, #{premonthsteps}, #{monthsteps}, #{resigncount}, #{gender}, #{usertype}, #{wxid}, #{country}, #{province}, #{city}, #{address})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.t_walk_userinfo
+        <set>
+            <if test="openid != null and openid != ''">
+                openid = #{openid},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="avatarurl != null and avatarurl != ''">
+                avatarUrl = #{avatarurl},
+            </if>
+            <if test="avatarlocal != null and avatarlocal != ''">
+                avatarLocal = #{avatarlocal},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="height != null">
+                height = #{height},
+            </if>
+            <if test="todaysteps != null">
+                todaysteps = #{todaysteps},
+            </if>
+            <if test="steps != null">
+                steps = #{steps},
+            </if>
+            <if test="keepcount != null">
+                keepcount = #{keepcount},
+            </if>
+            <if test="premonthkeepcount != null">
+                preMonthKeepCount = #{premonthkeepcount},
+            </if>
+            <if test="monthkeepcount != null">
+                monthKeepCount = #{monthkeepcount},
+            </if>
+            <if test="kms != null">
+                kms = #{kms},
+            </if>
+            <if test="caloris != null">
+                caloris = #{caloris},
+            </if>
+            <if test="myreward != null">
+                myreward = #{myreward},
+            </if>
+            <if test="mypoint != null">
+                mypoint = #{mypoint},
+            </if>
+            <if test="lastday != null and lastday != ''">
+                lastday = #{lastday},
+            </if>
+            <if test="premonthsteps != null">
+                preMonthSteps = #{premonthsteps},
+            </if>
+            <if test="monthsteps != null">
+                monthsteps = #{monthsteps},
+            </if>
+            <if test="resigncount != null">
+                resigncount = #{resigncount},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="usertype != null">
+                usertype = #{usertype},
+            </if>
+            <if test="wxid != null and wxid != ''">
+                wxid = #{wxid},
+            </if>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from test.t_walk_userinfo where id = #{id}
+    </delete>
+
+</mapper>
